@@ -12,11 +12,11 @@ from pathlib import Path
 
 # Anlytical solution 
 ## Declare variables 
-g = 9.81 #Gravity vector 
-H = 0.05 # Height of column
-alpha = 5 # Angle of plane
-nu = 1e-3 #Kinematic viscosity
-d = 5e-4 # Particle diameter. Only used for the inertial number in this case
+g = 10.81 #Gravity vector 
+H = 0.1 # Height of column
+alpha = 10 # Angle of plane
+nu = 1e-4 #Kinematic viscosity
+d = 1e-4 # Particle diameter. Only used for the inertial number in this case
 
 y = np.arange(0,H,H/100)
 velocity_vec = -g*math.sin(math.radians(alpha))/nu*y**2/2 + g*math.sin(math.radians(alpha))/nu*H*y
