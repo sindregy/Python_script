@@ -18,10 +18,12 @@ alpha = 5 # Angle of plane
 nu = 1e-3 #Kinematic viscosity
 d = 5e-4 # Particle diameter. Only used for the inertial number in this case
 
+# Calculation
 y = np.arange(0,H,H/100)
 velocity_vec = -g*math.sin(math.radians(alpha))/nu*y**2/2 + g*math.sin(math.radians(alpha))/nu*H*y
 dudy = g*math.sin(math.radians(alpha))/nu*(H-y)
 p_kin = g*H*(1-y/H)*math.cos(math.radians(alpha)) #Kinematic pressure, same as being used in pimpleFoam.
+I = d*dudy/np.sqrt(p_kin)
 
 #Identify OpenFOAM-directory
 #root = Tk()
