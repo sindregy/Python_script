@@ -18,10 +18,12 @@ alpha = 5 # Angle of plane
 nu = 1e-3 #Kinematic viscosity
 d = 5e-4 # Particle diameter. Only used for the inertial number in this case
 
+# Calculation
 y = np.arange(0,H,H/100)
 velocity_vec = -g*math.sin(math.radians(alpha))/nu*y**2/2 + g*math.sin(math.radians(alpha))/nu*H*y
 dudy = g*math.sin(math.radians(alpha))/nu*(H-y)
 p_kin = g*H*(1-y/H)*math.cos(math.radians(alpha)) #Kinematic pressure, same as being used in pimpleFoam.
+I = d*dudy/np.sqrt(p_kin)
 
 #Identify OpenFOAM-directory
 #root = Tk()
@@ -77,4 +79,14 @@ for i in dirlist:
     plt.title('Time='+i)
     plt.legend()
     plt.savefig(newDirName+'/StrainRate'+i+'.png')
+    plt.close()
+
+    I_sim = data_volumes[:,2]
+    plt.plot(Positions,I_sim,'o',label='Numerical solution')
+    plt.plot(y, I,label='Analytical solution')
+    plt.ylabel('Inertial number [-]')
+    plt.xlabel('Position [m]')
+    plt.title('Time='+i)
+    plt.legend()
+    plt.savefig(newDirName+'/Inertial_number'+i+'.png')
     plt.close()
