@@ -80,3 +80,13 @@ for i in dirlist:
     plt.legend()
     plt.savefig(newDirName+'/StrainRate'+i+'.png')
     plt.close()
+
+    I_sim = data_volumes[:,2]
+    plt.plot(Positions,I_sim,'o',label='Numerical solution')
+    plt.plot(y, I,label='Analytical solution')
+    plt.ylabel('Inertial number [-]')
+    plt.xlabel('Position [m]')
+    plt.title('Time='+i)
+    plt.legend()
+    plt.savefig(newDirName+'/Inertial_number'+i+'.png')
+    plt.close()
